@@ -112,18 +112,40 @@
 # for step in track(range(3)):
 # 	sleep(1)
 
-import time
+# import time
+#
+# from rich.progress import Progress
+#
+# with Progress() as progress:
+#
+# 	task1 = progress.add_task("[red]Doing Task 1", total=100)
+# 	task2 = progress.add_task("[blue]Doing Task 2", total=40)
+# 	task3 = progress.add_task("[green]Doing Task 3", total=500)
+#
+# 	while not progress.finished:
+# 		progress.update(task1, advance=0.1)
+# 		progress.update(task2, advance=0.3)
+# 		progress.update(task3, advance=0.6)
+# 		time.sleep(0.01)
 
-from rich.progress import Progress
+import json
+from urllib.request import urlopen
 
-with Progress() as progress:
+from rich.console import Console
+from rich.columns import Columns
+from rich.panel import Panel
 
-	task1 = progress.add_task("[red]Doing Task 1", total=100)
-	task2 = progress.add_task("[blue]Doing Task 2", total=40)
-	task3 = progress.add_task("[green]Doing Task 3", total=500)
 
-	while not progress.finished:
-		progress.update(task1, advance=0.1)
-		progress.update(task2, advance=0.3)
-		progress.update(task3, advance=0.6)
-		time.sleep(0.01)
+def get_content(user):
+    """Extract text from user dict."""
+    country = user["location"]["country"]
+    name = f"{user['name']['first']} {user['name']['last']}"
+    return f"[b]{name}[/b]\n[yellow]{country}"
+
+
+console = Console()
+
+
+users = json.loads(urlopen("https://randomuser.me/api/?results=30").read())["results"]
+user_renderables = [Panel(get_content(user), expand=True) for user in users]
+console.print(Columns(user_renderables))
