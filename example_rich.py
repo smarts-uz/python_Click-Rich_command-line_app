@@ -68,12 +68,40 @@
 #
 # 	table.width =  None
 
+# from rich.console import Console
+# from rich.markdown import Markdown
+#
+# console = Console()
+# with open("sample.md") as readme:
+# 	markdown = Markdown(readme.read())
+# console.print(markdown)
+
+
+# rich-tree.py
 from rich.console import Console
-from rich.markdown import Markdown
+from rich.tree import Tree
 
-console = Console()
-with open("sample.md") as readme:
-	markdown = Markdown(readme.read())
-console.print(markdown)
+console = Console(width=100)
 
+tree = Tree("Programming Languages")
 
+python_tree = tree.add("[b green]Python[/]")
+python_tree.add("Numpy")
+python_tree.add("Pandas")
+python_tree.add("Django")
+python_tree.add("Flask")
+
+java_tree = tree.add("[b dark_orange3]Java[/]")
+java_tree.add("Spring")
+java_tree.add("Apache")
+
+frameworks = ["Express", "React", "Next", "Vue", "Angular"]
+js_tree = tree.add("[b yellow]Javascript[/]")
+for framework in frameworks:
+	js_tree.add(framework)
+
+console.print(tree)
+
+CONSOLE_HTML_FORMAT = """\
+<pre style="font-family:Menlo">{code}</pre>
+"""
