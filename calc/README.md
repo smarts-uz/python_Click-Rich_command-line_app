@@ -1,0 +1,1 @@
+# Example of CLI appllication on click
