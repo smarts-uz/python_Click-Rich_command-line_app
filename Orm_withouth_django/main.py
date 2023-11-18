@@ -60,8 +60,8 @@ from app_dir.models import *
 """ Replace the code below with your own """
 
 # Seed a few users in the database
-User.objects.create(name='Dan')
-User.objects.create(name='Robert')
-
-for u in User.objects.all():
-    print(f'ID: {u.id} \tUsername: {u.name}')
+# list = ['Vanesa', 'Lila', 'Ziki']
+# for i in list:
+#     data = {'name': i}
+x = Musician.objects.create(instrument='violonchel', last_name='sabi', first_name='Ldofa')
+Album.objects.create(num_stars=5, release_date='2014-12-07',artist=x,name='Pehehia')

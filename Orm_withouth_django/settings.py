@@ -1,4 +1,3 @@
-
 SECRET_KEY = 'q=8$i#3m)sdtpi$z$-63_52$t01wto90d330&ox6n%x&d#w_@^'
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
